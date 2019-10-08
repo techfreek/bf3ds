@@ -8,7 +8,7 @@
 char * interpret(char *program) {
 	unsigned char tape[30000];
 	unsigned char* ptr = tape;
-	char * output;
+	char * output = calloc(1, 10000);
 	size_t i;
 	size_t loop;
 	for (i=0;program[i] != 0;i++) {
@@ -26,7 +26,7 @@ char * interpret(char *program) {
 			--*ptr;
 		}
 		if (c=='.') {
-			strcat(output,*ptr);
+			strncat(output, ptr, 1);
 		}
 		if (c=='[' && !(*ptr)) {
 			while (program[i]!=']') {
